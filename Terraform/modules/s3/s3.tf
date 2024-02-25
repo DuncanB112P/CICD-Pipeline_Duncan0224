@@ -1,7 +1,7 @@
-######  Create s3 bucket to host static website    ######
+##################   Create s3 bucket to host static website    #################
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket        = var.website_bucket_name
+  bucket        = var.website_bucket_names
   force_destroy = true
 
   tags = {
@@ -22,7 +22,7 @@ resource "aws_s3_object" "upload_object" {
 }
 
 
-######  Remove blocks to public access   ######
+###################     Remove blocks to public access    ######################
 
 resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   bucket = aws_s3_bucket.website_bucket.id
@@ -33,7 +33,7 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   restrict_public_buckets = false
 }
 
-#####  Configure the s3 bucket to host static website    #####
+#############     Configure the s3 bucket to host static website    ###########
 
 resource "aws_s3_bucket_website_configuration" "s3_bucket" {
   bucket = aws_s3_bucket.website_bucket.id
@@ -47,7 +47,7 @@ resource "aws_s3_bucket_website_configuration" "s3_bucket" {
   }
 }
 
-###  Policy - AWS Cloudfront service to GetObject from bucket ###
+###  Bucket policy to allow AWS Cloudfront service to GetObject from bucket ###
 
 resource "aws_s3_bucket_policy" "website_policy" {
   bucket = aws_s3_bucket.website_bucket.id
@@ -66,3 +66,13 @@ resource "aws_s3_bucket_policy" "website_policy" {
     ]
   })
 } 
+
+##################   Create s3 bucket for artifacts    #################
+resource "aws_s3_bucket" "artifact_bucket" {
+  bucket        = var.artifact_bucket_name
+  force_destroy = true
+
+  tags = {
+    Name = "ArtifactBucket"
+  }
+}

@@ -1,4 +1,4 @@
-output "bucketID" {
+output "website_bucketID" {
   value = aws_s3_bucket.website_bucket.id
 }
 
@@ -9,4 +9,8 @@ output "web_url" {
 
 output "bucket_domain" {
   value = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+}
+
+output "artifact_bucketID" {
+  value = aws_s3_bucket.artifact_bucket.id
 }
