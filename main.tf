@@ -22,12 +22,16 @@ provider "aws" {
 
 #####  MODULES  #####
 
-module "s3_buckets" {
-    source = "./modules/s3"
+module "s3_web" {
+    source = "./modules/s3_website"
 }
 
 module "cloudfront" {
     source = "./modules/cloudfront"
-    bucketID      = module.s3_buckets.bucketID
-    bucket_domain = module.s3_buckets.bucket_domain
+    bucketID      = module.s3_web.bucketID
+    bucket_domain = module.s3_web.bucket_domain
+}
+
+module "artifact_bucket" {
+  source = "./modules/s3_artifacts"
 }
