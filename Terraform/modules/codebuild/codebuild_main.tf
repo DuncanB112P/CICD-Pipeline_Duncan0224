@@ -25,7 +25,7 @@ resource "aws_codebuild_project" "test_build" {
 
   source {
     type            = "CODEPIPELINE"
-    buildspec = "Terraform/files/buildspec.yml"
+    buildspec = "./files/buildspec.yml"
   }
 
   source_version = "main"
