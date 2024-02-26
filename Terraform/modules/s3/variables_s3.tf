@@ -4,7 +4,7 @@ variable "website_bucket_names" {
 }
 
 variable "artifact_bucket_name" {
-  type = string
+  type    = string
   default = "sduncan-test-artifacts-healthcare-north-0224"
 }
 
