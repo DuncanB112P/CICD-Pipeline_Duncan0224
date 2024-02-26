@@ -58,8 +58,8 @@ resource "aws_codepipeline" "codepipeline" {
 
       configuration = {
         BucketName = var.website_bucketID
-        Extract = "true"
-        ObjectKey = "/"
+        Extract    = "true"
+        ObjectKey  = "/"
       }
     }
   }

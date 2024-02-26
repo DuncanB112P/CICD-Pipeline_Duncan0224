@@ -6,7 +6,7 @@ resource "aws_codebuild_project" "test_build" {
   service_role  = "arn:aws:iam::515808348954:role/CodeBuildServiceRole"
 
   artifacts {
-    type = "S3"
+    type     = "S3"
     location = var.artifact_bucketID
   }
 
@@ -24,8 +24,8 @@ resource "aws_codebuild_project" "test_build" {
   }
 
   source {
-    type            = "CODEPIPELINE"
-    buildspec = "./files/buildspec.yml"
+    type      = "CODEPIPELINE"
+    buildspec = "buildspec.yml"
   }
 
   source_version = "main"

@@ -65,7 +65,7 @@ resource "aws_s3_bucket_policy" "website_policy" {
       }
     ]
   })
-} 
+}
 
 ##################   Create s3 bucket for artifacts    #################
 resource "aws_s3_bucket" "artifact_bucket" {
