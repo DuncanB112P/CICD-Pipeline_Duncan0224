@@ -35,8 +35,8 @@ resource "aws_codepipeline" "codepipeline" {
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
-      input_artifacts  = "tf-code"
-      output_artifacts = "build_output"
+      input_artifacts  = ["source_output"]
+      output_artifacts = ["build_output"]
       version          = "1"
 
       configuration = {
@@ -52,7 +52,7 @@ resource "aws_codepipeline" "codepipeline" {
       category        = "Deploy"
       owner           = "AWS"
       provider        = "S3"
-      input_artifacts = ["build-output"]
+      input_artifacts = ["build_output"]
       version         = "1"
 
       configuration = {
