@@ -19,16 +19,11 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-
 }
 
 
 
-
 ##############      MODULES     ################
-
-
-
 
 module "buckets_s3" {
   source = "./modules/s3"
@@ -39,6 +34,23 @@ module "cloudfront_dist" {
   website_bucketID      = module.buckets_s3.website_bucketID
   bucket_domain = module.buckets_s3.bucket_domain
 }
+
+
+module "code_pipeline" {
+  source = "./modules/pipeline"
+  artifact_bucketID = module.buckets_s3.artifact_bucketID
+  codebuild_project_name = module.code_build.codebuild_project_name
+}
+
+module "code_build" {
+  source = "./modules/codebuild"
+  artifact_bucketID = module.buckets_s3.artifact_bucketID
+}
+
+
+
+
+
 
 
 #############      OUTPUTS      ################
