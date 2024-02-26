@@ -36,7 +36,7 @@ resource "aws_codepipeline" "codepipeline" {
       owner            = "AWS"
       provider         = "CodeBuild"
       input_artifacts  = "tf-code"
-      output_artifacts = "CODE_ZIP"
+      output_artifacts = "build_output"
       version          = "1"
 
       configuration = {
@@ -53,13 +53,12 @@ resource "aws_codepipeline" "codepipeline" {
       category        = "Deploy"
       owner           = "AWS"
       provider        = "S3"
-      input_artifacts = "tf-code"
+      input_artifacts = ["build-output"]
       version         = "1"
 
       configuration = {
         BucketName = var.website_bucketID
         Extract    = "true"
-        ObjectKey  = "/"
       }
     }
   }
