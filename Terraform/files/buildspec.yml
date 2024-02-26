@@ -1,0 +1,24 @@
+version: 0.2 # Specifies the buildspec version
+ 
+phases:
+  pre_build:
+    commands:
+      - echo "Starting pre-build checks..." # Display a message indicating the start of pre-build checks
+      - |
+        # Check if the expected title is in the index.html file
+        if grep -q 'HealthCare Hospital' ./Terraform/files/index.html; then
+          echo "Website title matches expected value" # If title is found, display a success message
+        else
+          echo "Title check failed-Website title did not match expected value" # If title is not found, display a failure message
+          exit 1 # Exit with an error status to stop the build
+  # The build phase is omitted as it's not required for static HTML/CSS websites
+ 
+  post_build:
+    commands:
+      - echo "Post-build phase..." # Display a message indicating the start of the post-build phase
+      # Include any post-build commands here if necessary
+ 
+artifacts:
+  files:
+    - '**/*' # Specify all files in the directory to be included as build artifacts
+  base-directory: '.' # Set the base directory for the artifacts (current directory in this case)
