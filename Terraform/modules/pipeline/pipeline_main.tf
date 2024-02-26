@@ -46,12 +46,10 @@ resource "aws_codepipeline" "codepipeline" {
   }
 
   stage {
-    name = "Deploy"
-
+    name = "Deploy_to_bucket"
     action {
-      name            = "Deploy"
+      name            = "Deploy_to_bucket"
       category        = "Deploy"
-      role_arn        = "arn:aws:iam::515808348954:role/CodePipelineServiceRole"
       owner           = "AWS"
       provider        = "S3"
       input_artifacts = ["build-output"]
