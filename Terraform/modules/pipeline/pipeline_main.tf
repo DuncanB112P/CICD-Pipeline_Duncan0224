@@ -60,7 +60,7 @@ resource "aws_codepipeline" "codepipeline" {
         ActionMode     = "REPLACE_ON_FAILURE"
         Capabilities   = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM"
         OutputFileName = "CreateStackOutput.json"
-        StackName      = "MyStack"
+        StackName      = "Stack1"
         TemplatePath   = "build_output::sam-templated.yaml"
       }
     }
