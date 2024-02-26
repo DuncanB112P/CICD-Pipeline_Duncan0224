@@ -27,17 +27,7 @@ provider "aws" {
 
 ##############      MODULES     ################
 
-module "build" {
-  source = "./modules/codebuild"
-  artifact_bucketID = module.buckets_s3.artifact_bucketID
-}
 
-
-module "pipeline" {
-  source = "./modules/codepipeline"
-  artifact_bucketID = module.buckets_s3.artifact_bucketID
-  website_bucketID = module.buckets_s3.website_bucketID
-}
 
 
 module "buckets_s3" {
@@ -48,11 +38,6 @@ module "cloudfront_dist" {
   source        = "./modules/cloudfront"
   website_bucketID      = module.buckets_s3.website_bucketID
   bucket_domain = module.buckets_s3.bucket_domain
-}
-
-module "codebuild" {
-  source = "./modules/codebuild"
-  artifact_bucketID = module.buckets_s3.artifact_bucketID
 }
 
 
