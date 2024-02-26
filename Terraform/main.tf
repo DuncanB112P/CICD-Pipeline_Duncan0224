@@ -40,6 +40,7 @@ module "code_pipeline" {
   source = "./modules/pipeline"
   artifact_bucketID = module.buckets_s3.artifact_bucketID
   codebuild_project_name = module.code_build.codebuild_project_name
+  website_bucketID      = module.buckets_s3.website_bucketID
 }
 
 module "code_build" {

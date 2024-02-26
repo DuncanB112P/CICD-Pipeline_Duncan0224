@@ -35,8 +35,8 @@ resource "aws_codepipeline" "codepipeline" {
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
-      input_artifacts  = ["source_output"]
-      output_artifacts = ["build_output"]
+      input_artifacts  = "tf-code"
+      output_artifacts = "CODE_ZIP"
       version          = "1"
 
       configuration = {
@@ -52,16 +52,14 @@ resource "aws_codepipeline" "codepipeline" {
       name            = "Deploy"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "CloudFormation"
-      input_artifacts = ["build_output"]
+      provider        = "S3"
+      input_artifacts = "tf-code"
       version         = "1"
 
       configuration = {
-        ActionMode     = "REPLACE_ON_FAILURE"
-        Capabilities   = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM"
-        OutputFileName = "CreateStackOutput.json"
-        StackName      = "MyStack"
-        TemplatePath   = "build_output::sam-templated.yaml"
+        BucketName = var.website_bucketID
+        Extract = "true"
+        ObjectKey = "/"
       }
     }
   }
