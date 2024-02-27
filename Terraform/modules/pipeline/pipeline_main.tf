@@ -1,7 +1,19 @@
+/*The data file paths direct to local files outside of Terraform where the ARN numbers 
+ for needed resources are stored. This is to prevent having these numbers in 
+ version control. */
+
+data "local_file" "codepipeline_service_role" {
+  filename = "${path.root}/../../../tf_aws_policies/CodePipelineServiceRole.txt"
+}
+
+data "local_file" "codestar_connection_credentials" {
+  filename = "${path.root}/../../../tf_aws_policies/codestar_connection_credentials.txt"
+}
+
 
 resource "aws_codepipeline" "codepipeline" {
   name     = var.pipeline_name
-  role_arn = var.CodePipelineServiceRole
+  role_arn = data.local_file.codepipeline_service_role.content
 
   artifact_store {
     location = var.artifact_bucketID
@@ -20,7 +32,7 @@ resource "aws_codepipeline" "codepipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = var.codestar_connection_credentials
+        ConnectionArn    = data.local_file.codestar_connection_credentials.content
         FullRepositoryId = var.github_repo
         BranchName       = "main"
       }
