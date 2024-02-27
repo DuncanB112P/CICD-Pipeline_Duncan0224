@@ -3,7 +3,7 @@ resource "aws_codebuild_project" "test_build" {
   name          = "test-project-sduncan0224"
   description   = "test_codebuild_project"
   build_timeout = 5
-  service_role  = "arn:aws:iam::515808348954:role/CodeBuildServiceRole"
+  service_role  = var.CodeBuildServiceRole
 
   artifacts {
     type     = "CODEPIPELINE"
