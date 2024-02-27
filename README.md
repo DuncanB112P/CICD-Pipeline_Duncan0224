@@ -17,8 +17,8 @@ This configurations uses an _AWS S3_ bucket as a remote backend and an _AWS Dyna
 
 In order to avoid committing potentially sensitive resource information to version control, **"${path.root}/PATH-TO-YOUR-FILE"** is used to pass Amazon Resource Numbers (ARN) in both the **codebuild_main.tf** and **pipeline_main.tf** configuration files. These files contain the ARNs for the _CodePipelineServiceRole_, _CodeBuildServiceRole_, and _codestar-connections:connection_ to GitHub.
 
-These IAM roles and policies were already established in the client's AWS account. These roles and policies can alternatively be created Terraform as part of the configuration.
+These IAM roles and policies were already established in the client's AWS account. These roles and policies can alternatively be created in Terraform as part of the configuration.
 
-Users who implement this configuration **MUST ENSURE THAT**: **(1)** individual **.txt** files containing the IAM role and connection ARNs esxit in their local environment exist, and **(2)** that they have set the path to those files correctly (_relative to the "root" directory_). 
+Users who implement this configuration **MUST ENSURE THAT**: **(1)** individual **.txt** files for each ARN exist in their local environment, and **(2)** that they have set the path to those files correctly (_relative to the "root" directory_). 
 
 
