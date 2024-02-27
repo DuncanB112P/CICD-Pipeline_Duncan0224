@@ -1,9 +1,14 @@
+data "local_file" "codebuild_service_role" {
+  filename = "${path.root}/../../../tf_aws_policies/CodeBuildServiceRole.txt"
+}
+
+
 
 resource "aws_codebuild_project" "test_build" {
-  name          = "test-project-sduncan0224"
+  name          = var.codebuild_project_name
   description   = "test_codebuild_project"
   build_timeout = 5
-  service_role  = var.CodeBuildServiceRole
+  service_role  = data.local_file.codebuild_service_role.content
 
   artifacts {
     type     = "CODEPIPELINE"
