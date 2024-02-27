@@ -1,7 +1,7 @@
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = "test-pipeline-sduncan0224"
-  role_arn = "arn:aws:iam::515808348954:role/CodePipelineServiceRole"
+  name     = var.pipeline_name
+  role_arn = var.CodePipelineServiceRole
 
   artifact_store {
     location = var.artifact_bucketID
@@ -20,8 +20,8 @@ resource "aws_codepipeline" "codepipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = "arn:aws:codestar-connections:us-east-1:515808348954:connection/c8b50689-b855-476a-b82c-53bc4964570a"
-        FullRepositoryId = "DuncanB112P/CICD-Pipeline_Duncan0224"
+        ConnectionArn    = var.codestar_connection_credentials
+        FullRepositoryId = var.github_repo
         BranchName       = "main"
       }
     }
