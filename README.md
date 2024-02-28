@@ -51,6 +51,7 @@ Users who implement this configuration **MUST ENSURE THAT**:
 1. individual **.txt** files for each ARN exist in their local environment
 2. that they have set the path to those files correctly (_relative to the "root" directory_).
 
-**_It is important to note that alothough the "${path.root}/" method will keep sensitive information from being uploaded to version control, that information will still be present in the /tfstate file._**
+# 
+*_It is important to note that although the **"${path.root}/"** method will keep sensitive information from being uploaded to version control, that information will still be present in the **/tfstate file.**_*
 
 
