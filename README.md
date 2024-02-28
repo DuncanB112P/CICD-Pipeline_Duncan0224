@@ -47,8 +47,10 @@ In order to avoid committing potentially sensitive resource information to versi
 
 These IAM roles and policies were already established in the client's AWS account. These roles and policies can alternatively be created in Terraform as part of the configuration.
 
-Users who implemen this configuration **MUST ENSURE THAT**: 
+Users who implement this configuration **MUST ENSURE THAT**: 
 1. individual **.txt** files for each ARN exist in their local environment
-2. that they have set the path to those files correctly (_relative to the "root" directory_). 
+2. that they have set the path to those files correctly (_relative to the "root" directory_).
+
+**_It is important to note that alothough the "${path.root}/" method will keep sensitive information from being uploaded to version control, that information will still be present in the /tfstate file._**
 
 
