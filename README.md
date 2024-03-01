@@ -43,10 +43,10 @@ This configurations uses an _AWS S3_ bucket as a remote backend and an _AWS Dyna
 
 # IAM Roles and Permissions
 
-For this execution of the CI/CD pipeline, _AWS CodeBuild_ needs, at minimum, S3 permissions to:
+For this execution of the CI/CD pipeline, _AWS CodeBuild_ needs some permissions that are not included in the standard _Codebuild_ IAM access policies. At minimum, a CodeBuild Service Role will need _S3_ permissions to:
 * "s3:GetObject" 
 * "s3:GetObjectVersion" (if verisoning is enabled in S3)
-Additionally, _CodeBuild_ needs to be able to access CloudWatchLogs:
+Additionally,this role should be able to access CloudWatchLogs:
 * "logs:FilterLogEvents"
 * "logs:GetLogEvents"
 
