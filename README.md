@@ -47,11 +47,11 @@ For this execution of the CI/CD pipeline, _AWS CodeBuild_ needs some permissions
 * "s3:GetObject" 
 * "s3:GetObjectVersion" (if verisoning is enabled in S3)
 
-Additionally,this role should be able to access CloudWatchLogs:
+Additionally, this role should be able to access CloudWatchLogs:
 * "logs:FilterLogEvents"
 * "logs:GetLogEvents"
 
-Ensure that the client's administrative unit in control of IAM access has enabled these permissions at a minimum. 
+Users of this configuration will need to ensure that the client's administrative unit in control of IAM access has enabled these permissions. 
 
 # External Files
 
