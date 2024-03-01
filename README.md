@@ -39,7 +39,18 @@ This configurations uses an _AWS S3_ bucket as a remote backend and an _AWS Dyna
 
 **varaible_cf.tf** (_Cloudfront_)
 * "oac_name"
-* "cloudfront_location_restrictions" 
+* "cloudfront_location_restrictions"
+
+# IAM Roles and Permissions
+
+For this execution of the CI/CD pipeline, _AWS CodeBuild_ needs, at minimum, S3 permissions to:
+* "s3:GetObject" 
+* "s3:GetObjectVersion" (if verisoning is enabled in S3)
+Additionally, _CodeBuild_ needs to be able to access CloudWatchLogs:
+* "logs:FilterLogEvents"
+* "logs:GetLogEvents"
+
+Ensure that the client's administrative unit in control of IAM access has enabled these permissions at a minimum. 
 
 # External Files
 
