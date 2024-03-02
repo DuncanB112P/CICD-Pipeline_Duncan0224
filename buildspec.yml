@@ -5,7 +5,7 @@ phases:
     commands:
       - echo "Starting pre-build checks..."
       - 
-  buuild:
+  build:
     - if grep -q '<title>HealthCare Hospital</title>' ./Terraform/files/index.html; then echo "Website matches expected value."; 
         else echo "Title check failed-Website title did not match expected value"; exit 1; fi
 
