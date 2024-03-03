@@ -58,18 +58,7 @@ resource "aws_codepipeline" "codepipeline" {
   }
 
   stage {
-    name = "Approve"
-    action {
-      name            = "Approval"
-      category        = "Approval"
-      owner           = "AWS"
-      provider        = "Manual"
-      version         = "1"
-    }
-  }
-
-  stage {
-    name = "Deploy_to_bucket"
+    name = "Deploy_to_dev_bucket"
     action {
       name            = "Deploy_to_bucket"
       category        = "Deploy"
@@ -84,7 +73,34 @@ resource "aws_codepipeline" "codepipeline" {
       }
     }
   }
-}
 
+  stage {
+    name = "Approve"
+    action {
+      name            = "Approval"
+      category        = "Approval"
+      owner           = "AWS"
+      provider        = "Manual"
+      version         = "1"
+    }
+  }
+
+  stage {
+    name = "Deploy_to_prod_bucket"
+    action {
+      name            = "Deploy_to_prod_bucket"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = "S3"
+      input_artifacts = ["build_output"]
+      version         = "1"
+
+      configuration = {
+        BucketName = var.prod_website_bucketID
+        Extract    = "true"
+      }
+    }
+  }
+}
 
 

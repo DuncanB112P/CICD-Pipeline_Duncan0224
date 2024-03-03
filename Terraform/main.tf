@@ -41,6 +41,8 @@ module "code_pipeline" {
   artifact_bucketID      = module.buckets_s3.artifact_bucketID
   codebuild_project_name = module.code_build.codebuild_project_name
   dev_website_bucketID       = module.buckets_s3.dev_website_bucketID
+  prod_website_bucketID = module.buckets_s3.prod_website_bucketID
+  web_url_prod = module.buckets_s3.web_url_prod
 }
 
 module "code_build" {
@@ -60,3 +62,6 @@ output "website_domain_name" {
   value = "http://${module.cloudfront_dist.cf_domain_name}"
 }
 
+output "prod_website_url" {
+  value = "http://${module.buckets_s3.web_url_prod}"
+}
