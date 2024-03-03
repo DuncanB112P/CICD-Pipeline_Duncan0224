@@ -1,6 +1,6 @@
 variable "artifact_bucketID" {}
 
 variable "codebuild_project_name" {
-    default = "test-project-sduncan0224"
+    default = "codebuild-hcnorth-0224"
 }
 
