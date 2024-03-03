@@ -1,12 +1,12 @@
 variable "oac_name" {
   type    = string
-  default = "sduncan_test_website_access_control_0224"
+  default = "oac-hcnorth-cloudfront"
 }
 
 variable "cloudfront_location_restrictions" {
   default = ["US", "CA"]
 }
 
-variable "website_bucketID" {}
+variable "dev_website_bucketID" {}
 
 variable "bucket_domain" {}

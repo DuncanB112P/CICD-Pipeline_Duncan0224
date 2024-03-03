@@ -79,7 +79,7 @@ resource "aws_codepipeline" "codepipeline" {
       version         = "1"
 
       configuration = {
-        BucketName = var.website_bucketID
+        BucketName = var.dev_website_bucketID
         Extract    = "true"
       }
     }

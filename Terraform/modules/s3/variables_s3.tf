@@ -1,10 +1,10 @@
-variable "website_bucket_names" {
+variable "dev_website_bucket_name" {
   type    = string
-  default = "sduncan-test-website-bucket-0224-dev"
+  default = "dev-website-hcnorth-5988"
 }
 
 variable "artifact_bucket_name" {
   type    = string
-  default = "sduncan-test-artifacts-healthcare-north-0224"
+  default = "dev-artifacts-hcnorth-5271"
 }
 
