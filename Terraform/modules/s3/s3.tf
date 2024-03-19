@@ -132,9 +132,11 @@ resource "aws_s3_bucket_policy" "website_policy_prod" {
     "Statement" : [
       {
         "Effect" : "Allow",
-        "Resource" : ["${aws_s3_bucket.prod_website_bucket.arn}/*"],
+        "Resource" :["${aws_s3_bucket.prod_website_bucket.arn}/*"],
         "Action" : "s3:GetObject",
-        "Principal" : "*",
+        "Principal" : {
+          "Service" : "cloudfront.amazonaws.com"
+        },
       }
     ]
   })
