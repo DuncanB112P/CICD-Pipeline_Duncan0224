@@ -27,7 +27,8 @@ This configurations uses an _AWS S3_ bucket as a remote backend and an _AWS Dyna
 # Variable inputs that need to be changed based on user's environment
 
 **variables_s3.tf**
-* "website_bucket_names"
+* "dev_website_bucket_name"
+* "prod_website_bucket_name"
 * "artifact_bucket_name" 
 
 **pipeline_variables.tf**
@@ -59,9 +60,13 @@ In order to avoid committing potentially sensitive resource information to versi
 
 These IAM roles and policies were already established in the client's AWS account. These roles and policies can alternatively be created in Terraform as part of the configuration.
 
-Users who implement this configuration **MUST ENSURE THAT**: 
-1. individual **.txt** files for each ARN exist in their local environment
-2. that they have set the path to those files correctly (_relative to the "root" directory_).
+# STEP BY STEP TO IMPLEMENT CONFIGURATION: 
+1. Outside of Terraform, create an S3 bucket and DynamoDB table to be used for the remote backend
+2. In AWS, create a Codestar connection to the Github repo being used. Save the ARN for that connection to a **.txt** file stored locally.
+4. Ensure that **.txt** files for the _codestar_connections:connection_, _CodePipelineServiceRole_, and _CodeBuildServiceRole_ are stored locally.
+5. Ensure that the path to those files are set correctly in the **"${path.root}/"** method (i.e., _relative to the "root" directory_).
+
+
 
 # 
 *_It is important to note that although the **"${path.root}/"** method will keep sensitive information from being uploaded to version control, that information will still be present in the **/tfstate file.**_*
