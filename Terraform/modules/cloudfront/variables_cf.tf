@@ -10,3 +10,7 @@ variable "cloudfront_location_restrictions" {
 variable "dev_website_bucketID" {}
 
 variable "bucket_domain" {}
+
+variable "prod_website_bucketID" {}
+
+variable "bucket_domain_prod" {}
