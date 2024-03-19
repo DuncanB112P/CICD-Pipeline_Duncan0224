@@ -68,6 +68,7 @@ These IAM roles and policies were already established in the client's AWS accoun
 5. Ensure that the path to those files are set correctly in the **"${path.root}/"** method (i.e., _relative to the "root" directory_).
 6. Name the specific variables mentioned in the above section.
 7. Follow the Terraform workflow to deploy the infrastructure.
+8. Test the pipeline by altering the _index.html_ file in some recognizable way, or alter the _<title/>_ tag to trigger a build failure. 
 
 
 
