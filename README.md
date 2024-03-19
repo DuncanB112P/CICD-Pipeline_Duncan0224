@@ -61,10 +61,13 @@ In order to avoid committing potentially sensitive resource information to versi
 These IAM roles and policies were already established in the client's AWS account. These roles and policies can alternatively be created in Terraform as part of the configuration.
 
 # STEP BY STEP TO IMPLEMENT CONFIGURATION: 
-1. Outside of Terraform, create an S3 bucket and DynamoDB table to be used for the remote backend
-2. In AWS, create a Codestar connection to the Github repo being used. Save the ARN for that connection to a **.txt** file stored locally.
+1. Outside of Terraform, create an S3 bucket and DynamoDB table to be used for the remote backend.
+2. Create service roles for CodeBuild and CodePipeline that have the additional permissions mentioned above.
+3. In AWS, create a Codestar connection to the Github repo being used. Save the ARN for that connection to a **.txt** file stored locally.
 4. Ensure that **.txt** files for the _codestar_connections:connection_, _CodePipelineServiceRole_, and _CodeBuildServiceRole_ are stored locally.
 5. Ensure that the path to those files are set correctly in the **"${path.root}/"** method (i.e., _relative to the "root" directory_).
+6. Name the specific variables mentioned in the above section.
+7. Follow the Terraform workflow to deploy the infrastructure.
 
 
 
