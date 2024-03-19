@@ -33,6 +33,8 @@ module "cloudfront_dist" {
   source           = "./modules/cloudfront"
   dev_website_bucketID = module.buckets_s3.dev_website_bucketID
   bucket_domain    = module.buckets_s3.bucket_domain
+  prod_website_bucketID = module.buckets_s3.prod_website_bucketID
+  bucket_domain_prod = module.buckets_s3.bucket_domain_prod
 }
 
 
